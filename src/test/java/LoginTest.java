@@ -16,7 +16,6 @@ public class LoginTest {
     private UserSteps userSteps;
     private Credetntials credetntials;
 
-
     @Before
     public void createTestData() {
         userSteps = new UserSteps(REQUEST_SPECIFICATION, RESPONSE_SPECIFICATION);
