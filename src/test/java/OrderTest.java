@@ -15,8 +15,8 @@ public class OrderTest {
     private UserSteps userSteps;
     private String accessToken;
     private String[] ingredients = {BIOCOTLET_INGREDIENT, FILENIAN_WOOD_INGREDIENT};
-    private String[] IncorrectIngridietns = {INCORRECT_INGREDIENT};
-    private String[] WithoutIngridients;
+    private String[] incorrectIngredients = {INCORRECT_INGREDIENT};
+
 
     @Before
     public void createTestData() {
@@ -46,7 +46,7 @@ public class OrderTest {
     @Test
     @Description("Create order without ingredients (filed) - status 400, Body:\"success\" = false")
     public void createOrderWithoutIngredientsTest() {
-        ValidatableResponse orderResponse = orderSteps.createOrderWithoutAuth(new Order(WithoutIngridients));
+        ValidatableResponse orderResponse = orderSteps.createOrderWithoutAuth(new Order(null));
         orderResponse.assertThat().statusCode(SC_BAD_REQUEST).and().body("success", equalTo(false));
         orderResponse.assertThat().body("message", equalTo(ORDER_WITHOUT_INGREDIENTS_MESSAGE));
     }
@@ -54,7 +54,7 @@ public class OrderTest {
     @Test
     @Description("Create order with incorrect ingredients (filed) - status 400, Body:\"success\" = false")
     public void createOrderIncorrectIngredientsTest() {
-        ValidatableResponse orderResponse = orderSteps.createOrderWithoutAuth(new Order(IncorrectIngridietns));
+        ValidatableResponse orderResponse = orderSteps.createOrderWithoutAuth(new Order(incorrectIngredients));
         orderResponse.assertThat().statusCode(SC_BAD_REQUEST).and().body("success", equalTo(false));
         orderResponse.assertThat().body("message", equalTo(ORDER_WITH_INCORRECT_INGREDIENTS_MESSAGE));
     }

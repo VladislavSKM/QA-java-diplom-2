@@ -13,9 +13,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 public class UpdateUserInfoTest {
     private User user;
     private UserSteps userSteps;
-    private Credetntials credetntials;
     private String accessToken;
-    private String name;
 
     @Before
     public void createTestData() {
